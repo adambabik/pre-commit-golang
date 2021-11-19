@@ -79,6 +79,12 @@ You can copy/paste the following snippet into your `.pre-commit-config.yaml` fil
     -   id: go-staticcheck-repo-mod
     -   id: go-staticcheck-repo-pkg
     #
+    # structslop
+    #
+    -   id: go-structslop-mod
+    -   id: go-structslop-repo-mod
+    -   id: go-structslop-repo-pkg
+    #
     # Formatters
     #
     -   id: go-fmt
@@ -370,6 +376,25 @@ bingo install honnef.co/go/tools/cmd/staticcheck
 ##### Help
  - https://staticcheck.io/
  - `staticcheck -h`
+
+----------
+### structslop
+Recommends struct field rearrangements to provide for maximum space/allocation efficiency.
+
+| Hook ID                  | Description
+|--------------------------|------------
+| `go-structslop-mod`      | Run `'cd $(mod_root $FILE); gosec [$ARGS] ./...'` for each staged .go file
+| `go-structslop-repo-mod` | Run `'cd $(mod_root); gosec [$ARGS] ./...'` for each module in the repo
+| `go-structslop-repo-pkg` | Run `'gosec [$ARGS] ./...'` in repo root folder
+
+##### Install (via [bingo](https://github.com/TekWizely/bingo))
+```
+bingo install github.com/orijtech/structslop/cmd/structslop
+```
+
+##### Help
+ - https://github.com/orijtech/structslop#usage
+ - `structslop -h`
 
 ----------
 ### go-vet
